@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="style.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto|Anton|Josefin+Sans|Lato|Oswald|Roboto+Condensed" rel="stylesheet">
+		<title>Radio Agregator</title>
+	</head>
+  <body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 header">
+			</div>
+		</div>
+		
+
+		<div class="row blocks">
+			<div class="col-lg-3 col-sm-6 col-xs-12 gray-bg1"><a title="Narodni Radio" onclick="radioURL('Narodni Radio')"><p><img src="radioIcons/narodni.png" class="ele2"></img></a></p></div>
+			<div class="col-lg-3 col-sm-6 col-xs-12 gray-bg2"><a title="Otvoreni Radio" onclick="radioURL('Otvoreni')"><p><img src="radioIcons/otvoreni.png" class="ele2"></img></a></p></div>
+			<div class="col-lg-3 col-sm-6 col-xs-12 gray-bg3"><a title="Antena Zagreb" onclick="radioURL('Antena Zagreb')"><p><img src="radioIcons/antena.png" class="ele2"></img></a></p></div>
+			<div class="col-lg-3 col-sm-6 col-xs-12 gray-bg4"><a title="HRT Radio" onclick="radioURL('HRT')"><p><img src="radioIcons/hrt.png" class="ele2"></img></a></p></div>
+
+			<div class="col-lg-3 col-sm-6 col-xs-12 gray-bg5"><a title="Radio Dalmacija" onclick="radioURL('Radio Dalmacija')"><p><img src="radioIcons/dalmacija.png" class="ele2"></img></a></p></div>
+			<div class="col-lg-3 col-sm-6 col-xs-12 gray-bg6"><a title="Enter ZG" onclick="radioURL('Enter ZG')"><p><img src="radioIcons/enter.png" class="ele2"></img></a></p></div>
+			<div class="col-lg-3 col-sm-6 col-xs-12 gray-bg7"><a title="Gold FM" onclick="radioURL('Gold FM')"><p><img src="radioIcons/gold.png" class="ele2"></img></a></p></div>
+			<div class="col-lg-3 col-sm-6 col-xs-12 gray-bg8"><a title="Laganini FM" onclick="radioURL('Laganini')"><p><img src="radioIcons/laganini.png" class="ele2"></img></a></p></div>
+		</div>
+		
+<div class="row filler"></div>
+<div class="row about">
+
+<!-- AUDIO PLAYER -->
+
+			<div class="col-sm-6 col-xs-12">
+
+					<div class='player'>
+						<audio autoplay id="player">
+							<source id="stanica" src="" type="audio/mp3"/>
+								Vaš preglednik ne podržava audio element.
+						</audio>
+					
+					<div><img id="thumb" src="radioIcons/icon.png" height="10px"/></div>
+					<div class='info'>
+						<div class="ime" id="imeRadio">Odaberite Radio</div>
+						<div class="pjesma"><p data-shoutcast-value="songtitle"></p></div>
+					</div>
+					<a onclick="play(); playButton()"><img id="gumb" src="radioIcons/play.png"></img></a>
+					</div> 
+			</div>
+			
+			<div class="col-sm-6 col-xs-12 about-text">
+				
+			</div>
+			
+			
+			
+			
+		</div>		
+	</div>
+	
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+	<script>
+
+var index = 0;
+var imageList = ['radioIcons/pause.png', 'radioIcons/play.png'];
+
+function playButton(){
+	index = index + 1;
+  if (index == imageList.length) {
+     index = 0;
+  }
+  var image1 = document.getElementById("gumb");
+  image1.src = imageList[index];
+  }
+
+var x = document.getElementById("player")
+
+function play(){
+	return x.paused ? x.play() : x.pause();
+	
+}
+
+function radioURL(name)
+{
+document.getElementById("imeRadio").innerHTML = name;
+index = 0;
+
+    var stanica=document.getElementById('player');
+	document.getElementById("gumb").src = "radioIcons/pause.png";
+	
+if (name=='Narodni Radio'){
+	document.getElementById("thumb").setAttribute ("src", "radioIcons/narodni.png");
+	stanica.src="http://live.narodni.hr:8059/;stream/1";
+}
+else if (name=='Otvoreni'){
+	document.getElementById("thumb").setAttribute ("src", "radioIcons/otvoreni.png");
+	stanica.src="http://50.7.130.2:13014/;stream/1";
+}
+else if (name=='Antena Zagreb'){
+	document.getElementById("thumb").setAttribute ("src", "radioIcons/antena.png");
+	stanica.src="http://live.antenazagreb.hr:8000/;stream/1";
+}
+else if (name=='HRT'){
+	document.getElementById("thumb").setAttribute ("src", "radioIcons/hrt.png");
+	stanica.src="http://18183.live.streamtheworld.com/PROGRAM1.mp3";
+}
+else if (name=='Radio Dalmacija'){
+	document.getElementById("thumb").setAttribute ("src", "radioIcons/dalmacija.png");
+	stanica.src="http://shoutcast.pondi.hr:8000/;stream/1";
+}
+else if (name=='Enter ZG'){
+	document.getElementById("thumb").setAttribute ("src", "radioIcons/enter.png");
+	stanica.src="http://live.enterzagreb.hr:8023/;";
+}
+else if (name=='Gold FM'){
+	document.getElementById("thumb").setAttribute ("src", "radioIcons/gold.png");
+	stanica.src="http://c5.hostingcentar.com:8070/;stream/1";
+}
+else if (name=='Laganini'){
+	document.getElementById("thumb").setAttribute ("src", "radioIcons/laganini.png");
+	stanica.src="http://50.7.77.114:8495/;stream/1";
+}
+}
+
+
+
+
+	</script>
+	
+	<script>window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"><\/script>')</script>
+	<script src="jquery.shoutcast.easy.min.js?host=shoutcast.pondi.hr&port=8000"></script>		
+  </body>
+</html>
